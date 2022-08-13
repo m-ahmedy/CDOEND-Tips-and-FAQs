@@ -21,17 +21,17 @@ For the ALB / Targets with the following properties
 
 We need the following rules for the Load Balancer Security Group
 
-| #   | Affecting properties                | Inbound / Outbound | Protocol, Ports, Source            |
-| --- | ----------------------------------- | ------------------ | ---------------------------------- |
-| 1   | ELB Listener Port                   | Inbound            | TCP, 80, ALL (0.0.0.0/0)           |
-| 2   | Target Group Port, Running App Port | Outbound           | TCP, 80, **Target Security Group** |
+| #   | Affecting properties                | Inbound / Outbound | Protocol, Ports, Source / Destination |
+| --- | ----------------------------------- | ------------------ | ------------------------------------- |
+| 1   | ELB Listener Port                   | Inbound            | TCP, 80, ALL (0.0.0.0/0)              |
+| 2   | Target Group Port, Running App Port | Outbound           | TCP, 80, **Target Security Group**    |
 
 - Rule 1: We need the ELB Listener to listen on port 80 (the default HTTP port) from all sources, this is the inbound rule, this way we can use the normal ELB HTTP endpoint without having to add `:port` section after it
 - Rule 2: The only traffic initiating from the ELB is the rerouted traffic to the targets, we can specify the destination by specifying the Security Group associated with it
 
 We need the following rules for the Load Balancer Security Group
 
-| #   | Affecting properties                | Inbound / Outbound | Protocol, Ports, Source                   |
+| #   | Affecting properties                | Inbound / Outbound | Protocol, Ports, Source / Destination     |
 | --- | ----------------------------------- | ------------------ | ----------------------------------------- |
 | 1   | Target Group Port, Running App Port | Inbound            | TCP, 80, **Load Balancer Security Group** |
 | 2   | -                                   | Outbound           | ALL, ALL (0-65535), ALL (0.0.0.0/0)       |

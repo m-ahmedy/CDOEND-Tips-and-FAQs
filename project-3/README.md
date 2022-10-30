@@ -11,4 +11,6 @@
 
 ## FAQs
 
+- [Debugging Run Migrations and Database issues](./faqs/debugging-migrations-and-database)
+
 - [Debugging Connection Refused Error](./faqs/debugging-error-connection-refused)
